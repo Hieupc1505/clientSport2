@@ -20,7 +20,7 @@ const VideoPlay = ({ url, setLinkVideo }) => {
                     height={"100%"}
                     width={"100%"}
                     style={{
-                        "max-height": "360px",
+                        maxHeight: "360px",
                     }}
                 />
             }

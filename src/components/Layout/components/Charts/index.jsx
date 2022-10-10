@@ -46,7 +46,7 @@ const Charts = () => {
     const handleClickDropdown = () => {
         onChangeValue(!ss);
     };
-    // console.log(data);
+    console.log(data);
     return (
         <>
             {data && (
@@ -123,7 +123,7 @@ const Charts = () => {
                             </div>
                         </div>
                         {data &&
-                            data.map((list) => (
+                            data.map((table) => (
                                 <div key={uuidv4()} className={cx("charts")}>
                                     <table className={cx("charts-table")}>
                                         {/* <div className={cx("bridge")}></div> */}
@@ -227,7 +227,7 @@ const Charts = () => {
                                                     Last 5 match
                                                 </th>
                                             </tr>
-                                            {list.map((item, index) => (
+                                            {table.map((item, index) => (
                                                 <tr
                                                     key={uuidv4()}
                                                     className={cx(

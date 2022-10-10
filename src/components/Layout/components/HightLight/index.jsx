@@ -7,9 +7,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(styles);
-const server = "https://serverside88.herokuapp.com";
 // const server = "http://localhost:7500";
-// const server = "https://serversport98.herokuapp.com";
+const server = "https://serversport98.herokuapp.com";
 
 const HightLight = () => {
     const navigate = useNavigate();

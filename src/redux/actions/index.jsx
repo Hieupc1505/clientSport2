@@ -20,9 +20,18 @@ import {
 } from "../containts";
 
 import axios from "axios";
-// const server = "https://serversport98.herokuapp.com";
+const server = "https://serversport98.herokuapp.com";
 // const server = "http://localhost:7500";
-const server = "https://serverside88.herokuapp.com";
+// const server = "https://serverside88.herokuapp.com";
+
+export const getVideo =
+    (nation, ...arr) =>
+    async (dispatch) => {
+        const { data } = await axios.get(
+            `${server}/api/${nation}/video?q=${arr[0]}&c=${arr[1]}&pub=${arr[2]}`
+        );
+        return data;
+    };
 
 export const getMatchTime = (nation) => async (dispatch) => {
     try {
@@ -33,7 +42,7 @@ export const getMatchTime = (nation) => async (dispatch) => {
             payload: { data },
         });
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         dispatch({
             type: MATCH_TIME_ON_FAIL,
             payload: {
@@ -54,7 +63,7 @@ export const getRound = (nation, roundId) => async (dispatch) => {
 
         return data;
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         dispatch({
             type: ROUND_MATCH_FAIL,
             payload: {
@@ -109,7 +118,7 @@ export const getListVideo = (nation) => async (dispatch) => {
             payload: { name: nation, ...data },
         });
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         dispatch({
             type: LISTS_VIDEO_FAIL,
             payload: { err: err.response.data.err },
@@ -126,6 +135,6 @@ export const changeNation = (nation) => async (dispatch) => {
     });
 };
 export const clearError = () => async (dispatch) => {
-    console.log("clear");
+    // console.log("clear");
     dispatch({ type: CLEAR_ERROR });
 };

@@ -9,50 +9,38 @@ import VideoPlay from "../VideoPlay";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { checkTimeMatch } from "../Utils";
+import { useDispatchCustom } from "../../../Hooks";
+import { getVideo } from "../../../../redux/actions/index";
 import axios from "axios";
 const cx = classNames.bind(styles);
 
 const PreMatch = ({ data, round, lRound, color }) => {
     // console.log(color);
     const { checkTime, checkWeekDay } = checkTimeMatch();
-
+    const { onGetDispatch, dataBySelector } = useDispatchCustom();
     const [flag, setFlag] = useState(false);
     const [url, setUrl] = useState(null);
     const handleSetLink = (link) => {
         setUrl(link);
     };
+    const { nation } = dataBySelector;
+
     // const view = useRef();
     const handleClickVideo = useCallback(
         async (url, q, channelId, publishedAfter) => {
             document.querySelector("body").style.overflow = "hidden";
-            console.log(url);
 
             let link = "";
             if (url) {
                 link = url;
             } else {
                 //channel id , querry
-                let { data } = await axios({
-                    method: "GET",
-                    url: "https://www.googleapis.com/youtube/v3/search",
-                    params: {
-                        part: "snippet",
-                        maxResults: "4",
-                        key: "AIzaSyBle17ccjzisxuWTdnsX0sl0eLBWJMxFxI",
-                        channelId,
-                        q,
-                        publishedAfter,
-                        regionCode: "VN",
-                    },
-                });
-                const result = data.items.filter(
-                    (item) => item.snippet.channelId === channelId
+                const data = await onGetDispatch(
+                    getVideo(nation, q, channelId, publishedAfter),
+                    1
                 );
-                // UCQsH5XtIc9hONE1BQjucM0g
-
-                link = result[0].id.videoId;
+                if (data.id) link = data.id;
             }
-
             setUrl(() => {
                 return link;
             });
@@ -64,6 +52,7 @@ const PreMatch = ({ data, round, lRound, color }) => {
         document.querySelector("body").style.overflow = "auto";
         setFlag(!flag);
     };
+
     return (
         <div className={cx("content-main")}>
             {color !== null && <div className={cx("view")}></div>}
@@ -195,8 +184,13 @@ const PreMatch = ({ data, round, lRound, color }) => {
                                                                 </div>
                                                             </div>
                                                             {item[0].status
-                                                                .code ===
-                                                            100 ? (
+                                                                .code === 100 ||
+                                                            checkWeekDay(
+                                                                item[0]
+                                                                    .startTimestamp *
+                                                                    1000,
+                                                                item[0].status
+                                                            ) === "KT" ? (
                                                                 <div
                                                                     className={cx(
                                                                         "table-match-detail-video"
@@ -289,7 +283,10 @@ const PreMatch = ({ data, round, lRound, color }) => {
                                                             >
                                                                 {item[0].status
                                                                     .code ===
-                                                                100
+                                                                    100 ||
+                                                                item[0].status
+                                                                    .type ==
+                                                                    "inprogress"
                                                                     ? item[0]
                                                                           .homeScore
                                                                           .current
@@ -360,7 +357,10 @@ const PreMatch = ({ data, round, lRound, color }) => {
                                                             >
                                                                 {item[0].status
                                                                     .code ===
-                                                                100
+                                                                    100 ||
+                                                                item[0].status
+                                                                    .type ==
+                                                                    "inprogress"
                                                                     ? item[0]
                                                                           .awayScore
                                                                           .current
@@ -530,7 +530,14 @@ const PreMatch = ({ data, round, lRound, color }) => {
                                                                 </div>
                                                                 {item[1].status
                                                                     .code ===
-                                                                100 ? (
+                                                                    100 ||
+                                                                checkWeekDay(
+                                                                    item[1]
+                                                                        .startTimestamp *
+                                                                        1000,
+                                                                    item[1]
+                                                                        .status
+                                                                ) === "KT" ? (
                                                                     <div
                                                                         className={cx(
                                                                             "table-match-detail-video"
@@ -614,7 +621,11 @@ const PreMatch = ({ data, round, lRound, color }) => {
                                                                     {item[1]
                                                                         .status
                                                                         .code ===
-                                                                    100
+                                                                        100 ||
+                                                                    item[0]
+                                                                        .status
+                                                                        .type ==
+                                                                        "inprogress"
                                                                         ? item[1]
                                                                               .homeScore
                                                                               .current
@@ -686,7 +697,11 @@ const PreMatch = ({ data, round, lRound, color }) => {
                                                                     {item[1]
                                                                         .status
                                                                         .code ===
-                                                                    100
+                                                                        100 ||
+                                                                    item[1]
+                                                                        .status
+                                                                        .type ==
+                                                                        "inprogress"
                                                                         ? item[1]
                                                                               .awayScore
                                                                               .current

@@ -112,7 +112,7 @@ const Match = () => {
     // }, [])
     useEffect(() => {
         let view = document.querySelector(".view");
-        console.log(view);
+
         if (view) {
             view.scrollIntoView();
             window.scrollTo(0, window.scrollY - 132);

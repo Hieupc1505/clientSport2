@@ -56,20 +56,14 @@ const YouTubeMatch = ({ slug, startMatch, handleClickVideo }) => {
         let body = "";
         let after = ISODateString(new Date(startMatch));
         lists[nation].map((item) => {
-            if (
-                checkTitle(
-                    [home, away],
-                    item.snippet.title,
-                    item.snippet.publishedAt
-                )
-            )
+            if (checkTitle([home, away], item.title, item.publishedAt))
                 body = (
                     <span
                         key={uuidv4()}
                         onClick={() =>
                             handleClickVideo(
-                                item.snippet.videoId,
-                                `${home.name} - ${away.name}`
+                                item.videoId,
+                                `${home.shortName} - ${away.shortName}`
                             )
                         }
                         // href={`https://www.youtube.com/watch?v=${item.snippet.videoId}`}
@@ -77,7 +71,7 @@ const YouTubeMatch = ({ slug, startMatch, handleClickVideo }) => {
                         // rel="noopener noreferrer"
                     >
                         <img
-                            src={`https://i.ytimg.com/vi/${item.snippet.videoId}/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLADKHNS5_XF51n-zYznTlcRpeQPwQ`}
+                            src={`https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLADKHNS5_XF51n-zYznTlcRpeQPwQ`}
                             alt="hightLight"
                         />
                     </span>
@@ -89,8 +83,7 @@ const YouTubeMatch = ({ slug, startMatch, handleClickVideo }) => {
                     onClick={() =>
                         handleClickVideo(
                             null,
-
-                            `${home.name} - ${away.name}`,
+                            `${home.shortName} - ${away.shortName}`,
                             list[nation].params.channelId,
                             after
                         )

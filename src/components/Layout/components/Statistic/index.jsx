@@ -45,7 +45,6 @@ const Statistic = () => {
         document.addEventListener("click", handleClickDoc);
         return () => document.removeEventListener("click", handleClickDoc);
     }, [flag]);
-
     return (
         <>
             {data && (
@@ -63,7 +62,7 @@ const Statistic = () => {
                             </span>
                             {flag && (
                                 <ul className={cx("drop-down-list")}>
-                                    {Object.keys(type).map((it, id) => {
+                                    {Object.keys(data).map((it, id) => {
                                         if (it !== title)
                                             return (
                                                 <li
@@ -100,107 +99,102 @@ const Statistic = () => {
                                         </td>
                                     </tr>
                                     {data &&
-                                        data.topPlayers[title].map(
-                                            (item, index) => {
-                                                return (
-                                                    <tr
-                                                        key={uuidv4()}
+                                        data[title].map((item, index) => {
+                                            return (
+                                                <tr
+                                                    key={uuidv4()}
+                                                    className={cx(
+                                                        "inner-row-tt"
+                                                    )}
+                                                >
+                                                    <td
                                                         className={cx(
-                                                            "inner-row-tt"
+                                                            "inner-row-title"
                                                         )}
                                                     >
-                                                        <td
+                                                        {index + 1}
+                                                    </td>
+                                                    <td
+                                                        className={cx(
+                                                            "inner-row-space"
+                                                        )}
+                                                    >
+                                                        <div
                                                             className={cx(
-                                                                "inner-row-title"
+                                                                "inner-row-avata"
                                                             )}
                                                         >
-                                                            {index + 1}
-                                                        </td>
-                                                        <td
+                                                            <img
+                                                                src={`https://api.sofascore.app/api/v1/player/${item.player.id}/image`}
+                                                                alt="Haland"
+                                                            />
+                                                        </div>
+                                                        <div
                                                             className={cx(
-                                                                "inner-row-space"
+                                                                "inner-row-info"
                                                             )}
                                                         >
                                                             <div
                                                                 className={cx(
-                                                                    "inner-row-avata"
+                                                                    "inner-row-info-name"
                                                                 )}
                                                             >
-                                                                <img
-                                                                    src={`https://api.sofascore.app/api/v1/player/${item.player.id}/image`}
-                                                                    alt="Haland"
-                                                                />
+                                                                {
+                                                                    item.player
+                                                                        .name
+                                                                }
                                                             </div>
                                                             <div
                                                                 className={cx(
-                                                                    "inner-row-info"
+                                                                    "inner-row-info-club-name"
                                                                 )}
                                                             >
-                                                                <div
+                                                                <span
                                                                     className={cx(
-                                                                        "inner-row-info-name"
+                                                                        "inner-row-info-club-logo"
                                                                     )}
                                                                 >
-                                                                    {
-                                                                        item
-                                                                            .player
-                                                                            .name
-                                                                    }
-                                                                </div>
-                                                                <div
-                                                                    className={cx(
-                                                                        "inner-row-info-club-name"
-                                                                    )}
-                                                                >
-                                                                    <span
-                                                                        className={cx(
-                                                                            "inner-row-info-club-logo"
-                                                                        )}
-                                                                    >
-                                                                        <img
-                                                                            src={`https://api.sofascore.app/api/v1/team/${item.team.id}/image`}
-                                                                            alt="logo"
-                                                                        />
-                                                                    </span>
-                                                                    {
-                                                                        item
-                                                                            .team
-                                                                            .shortName
-                                                                    }
-                                                                </div>
+                                                                    <img
+                                                                        src={`https://api.sofascore.app/api/v1/team/${item.team.id}/image`}
+                                                                        alt="logo"
+                                                                    />
+                                                                </span>
+                                                                {
+                                                                    item.team
+                                                                        .shortName
+                                                                }
                                                             </div>
-                                                        </td>
-                                                        <td
-                                                            className={cx(
-                                                                "inner-row-type",
-                                                                "ttc"
-                                                            )}
-                                                        >
-                                                            {Number.isInteger(
-                                                                Number(
-                                                                    item
-                                                                        .statistics[
-                                                                        title
-                                                                    ]
-                                                                )
+                                                        </div>
+                                                    </td>
+                                                    <td
+                                                        className={cx(
+                                                            "inner-row-type",
+                                                            "ttc"
+                                                        )}
+                                                    >
+                                                        {Number.isInteger(
+                                                            Number(
+                                                                item.statistics[
+                                                                    title
+                                                                ]
                                                             )
-                                                                ? Number(
-                                                                      item
-                                                                          .statistics[
-                                                                          title
-                                                                      ]
-                                                                  )
-                                                                : Number(
-                                                                      item
-                                                                          .statistics[
-                                                                          title
-                                                                      ]
-                                                                  ).toFixed(2)}
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            }
-                                        )}
+                                                        )
+                                                            ? Number(
+                                                                  item
+                                                                      .statistics[
+                                                                      title
+                                                                  ]
+                                                              )
+                                                            : Number(
+                                                                  item
+                                                                      .statistics[
+                                                                      title
+                                                                  ]
+                                                              ).toFixed(2)}
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
                                 </tbody>
                             </table>
                         </div>
