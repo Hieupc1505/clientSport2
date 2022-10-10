@@ -171,7 +171,7 @@ const Header = () => {
                                 "header-list-item-active": listTag[3],
                             })}
                         >
-                            TIN TỨC
+                            TRỰC TIẾP
                         </li>
                     </Link>
                 </ul>

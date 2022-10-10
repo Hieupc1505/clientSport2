@@ -12,15 +12,8 @@ const server = "https://serversport98.herokuapp.com";
 
 const HightLight = () => {
     const navigate = useNavigate();
-    const [data, setData] = useState([]);
+    const [sofa, setSofa] = useState([]);
     const [vebo, setVebo] = useState([]);
-    useEffect(
-        () => async () => {
-            const { data } = await axios.get(`${server}/api/live-match`);
-            setData(() => data.live);
-        },
-        []
-    );
     useEffect(
         () => async () => {
             const { data } = await axios.get(`${server}/api/vebo`);
@@ -28,12 +21,21 @@ const HightLight = () => {
         },
         []
     );
-    useEffect(() => {
-        let timeout = setTimeout(async () => {
+    useEffect(
+        () => async () => {
             const { data } = await axios.get(`${server}/api/live-match`);
-            setData(() => data.live);
-        }, 3 * 60 * 1000);
-        return () => clearTimeout(timeout);
+            setSofa(() => data.live);
+        },
+        []
+    );
+    useEffect(() => {
+        if (sofa) {
+            let timeout = setTimeout(async () => {
+                const { data } = await axios.get(`${server}/api/live-match`);
+                setSofa(() => data.live);
+            }, 3 * 60 * 1000);
+            return () => clearTimeout(timeout);
+        }
     }, []);
     const handleClickLink = (link, e) => {
         e.preventDefault();
@@ -217,8 +219,8 @@ const HightLight = () => {
                 </div>
                 {/* <div className={cx("other-match")}>Các giải khác</div> */}
                 <div className={cx("hight-light-row", "row")}>
-                    {!!data.length &&
-                        data.map((item) => (
+                    {!!sofa.length &&
+                        sofa.map((item) => (
                             <div
                                 key={uuidv4()}
                                 className={cx("hight-light-box", "col", "l-6")}

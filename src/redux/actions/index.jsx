@@ -22,7 +22,6 @@ import {
 import axios from "axios";
 const server = "https://serversport98.herokuapp.com";
 // const server = "http://localhost:7500";
-// const server = "https://serverside88.herokuapp.com";
 
 export const getVideo =
     (nation, ...arr) =>
