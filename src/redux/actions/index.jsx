@@ -20,8 +20,8 @@ import {
 } from "../containts";
 
 import axios from "axios";
-//const server = "https://serversport98.herokuapp.com";
-const server = "http://localhost:7500";
+const server = "https://serversport98.herokuapp.com";
+// const server = "http://localhost:7500";
 
 export const getVideo =
     (nation, ...arr) =>
