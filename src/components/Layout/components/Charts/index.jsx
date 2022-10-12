@@ -7,6 +7,7 @@ import { list } from "../../../GlobelStyles/type";
 import { useStateCustom, useDispatchCustom } from "../../../Hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { handleErrorImage } from "../Utils";
 const cx = classNames.bind(styles);
 
 const Charts = () => {
@@ -46,7 +47,7 @@ const Charts = () => {
     const handleClickDropdown = () => {
         onChangeValue(!ss);
     };
-    console.log(data);
+
     return (
         <>
             {data && (
@@ -279,6 +280,14 @@ const Charts = () => {
                                                         >
                                                             <img
                                                                 src={`https://api.sofascore.app/api/v1/team/${item.team.id}/image`}
+                                                                onError={(e) =>
+                                                                    handleErrorImage(
+                                                                        e,
+                                                                        item
+                                                                            .team
+                                                                            .id
+                                                                    )
+                                                                }
                                                                 alt="logoImg"
                                                                 className={cx(
                                                                     "content-center"

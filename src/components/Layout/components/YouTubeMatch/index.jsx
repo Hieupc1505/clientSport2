@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import { list } from "../../../GlobelStyles/type";
 import classNames from "classnames/bind";
 import styles from "../Match/Match.module.scss";
+import { handleErrorImage } from "../Utils";
+
 const cx = classNames.bind(styles);
 
 const YouTubeMatch = ({ slug, startMatch, handleClickVideo }) => {
@@ -100,13 +102,15 @@ const YouTubeMatch = ({ slug, startMatch, handleClickVideo }) => {
                     <div className={cx("home-info")}>
                         <img
                             src={`https://api.sofascore.app/api/v1/team/${home.id}/image`}
-                            alt={"home"}
+                            alt={home.shortName}
+                            onError={(e) => handleErrorImage(e, home.id)}
                         />
                     </div>
                     <div className={cx("away-info")}>
                         <img
                             src={`https://api.sofascore.app/api/v1/team/${away.id}/image`}
-                            alt={"away"}
+                            onError={(e) => handleErrorImage(e, away.id)}
+                            alt={away.shortName}
                         />
                     </div>
                 </div>

@@ -6,6 +6,8 @@ import { getTopPlayers } from "../../../../redux/actions";
 import { v4 as uuidv4 } from "uuid";
 import { useStateCustom, useDispatchCustom } from "../../../Hooks";
 import { type } from "./type";
+import { handleErrorImage } from "../Utils";
+
 const cx = classNames.bind(styles);
 
 // console.log(type);
@@ -126,7 +128,11 @@ const Statistic = () => {
                                                         >
                                                             <img
                                                                 src={`https://api.sofascore.app/api/v1/player/${item.player.id}/image`}
-                                                                alt="Haland"
+                                                                // onError={(e) => handleErrorImage(e,)}
+                                                                alt={
+                                                                    item.player
+                                                                        .shortName
+                                                                }
                                                             />
                                                         </div>
                                                         <div
@@ -156,7 +162,17 @@ const Statistic = () => {
                                                                 >
                                                                     <img
                                                                         src={`https://api.sofascore.app/api/v1/team/${item.team.id}/image`}
-                                                                        alt="logo"
+                                                                        onError={(
+                                                                            e
+                                                                        ) =>
+                                                                            handleErrorImage(
+                                                                                e,
+                                                                                item
+                                                                                    .team
+                                                                                    .id
+                                                                            )
+                                                                        }
+                                                                        alt=""
                                                                     />
                                                                 </span>
                                                                 {

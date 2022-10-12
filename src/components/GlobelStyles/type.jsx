@@ -162,6 +162,7 @@ export const list = {
             channelId: "UC9xeuekJd88ku9LDcmGdUOA",
             listLength: 10,
             image: "https://res.cloudinary.com/develope-app/image/upload/v1663678239/Sports/7850957_1_nnkjut.webp",
+            logo: "https://res.cloudinary.com/develope-app/image/upload/v1665582406/Sports/leagues/yd1juzh6c9nizsaexyak.png",
         },
     },
     spain: {
@@ -283,10 +284,12 @@ export const list = {
             tournament: "laliga",
             fullName: "LaLiga",
             id: "8",
-            list: "PLe7emRNTL6brFsTUsqgcPYaRY_Kiy81fu",
+            list: "PLxbDrTU0IHWc5ViR9ge39-mJbEuIWpcQo",
+            list2: "PLe7emRNTL6brFsTUsqgcPYaRY_Kiy81fu",
             channelId: "UCUF-y50XKhKMDETOcC3VI8A",
             listLength: 10,
             image: "https://res.cloudinary.com/develope-app/image/upload/v1663678273/Sports/laliga-featured-image-16x9-1_umovxk.webp",
+            logo: "https://res.cloudinary.com/develope-app/image/upload/v1665582406/Sports/leagues/b7ufhbomj745l4fauyip.png",
         },
     },
     germany: {
@@ -330,6 +333,7 @@ export const list = {
             channelId: "UCoqrrrfDpWOgdqw1vRoiG_A",
             listLength: 10,
             image: "https://res.cloudinary.com/develope-app/image/upload/v1663678249/Sports/bundesliga-16x9.png.adapt.crop191x100.628p_fqeya4.png",
+            logo: "https://res.cloudinary.com/develope-app/image/upload/v1665582406/Sports/leagues/aqwmjjiiy2ljt6jwweuv.png",
         },
     },
     france: {
@@ -372,6 +376,7 @@ export const list = {
             channelId: "UCbdlxg0t8O7WGPrFsVcz6Gg",
             listLength: 10,
             image: "https://res.cloudinary.com/develope-app/image/upload/v1663678184/Sports/item_5_575_ukv8h4.jpg",
+            logo: "https://res.cloudinary.com/develope-app/image/upload/v1665582406/Sports/leagues/twdf2x15fpo0q65gutok.png",
         },
     },
     italy: {
@@ -410,10 +415,12 @@ export const list = {
             tournament: "serie-a",
             fullName: "Serie A",
             id: "23",
-            list: "PLe7emRNTL6bpAaZy0yM5aAEPuVNJLlTPe",
+            list: "PLRNODuy48D6wwfoCnG6e8VIsDeQ2AoVxP",
+            list2: "PLe7emRNTL6bpAaZy0yM5aAEPuVNJLlTPe",
             channelId: "UCPt9pwiEtp-8lTAM_ol2VTQ",
             listLength: 10,
             image: "https://res.cloudinary.com/develope-app/image/upload/v1663678178/Sports/48192c73eb16464ab1574f13ebc1c0a0bdd1d140-1280x720_fy8brg.png",
+            logo: "https://res.cloudinary.com/develope-app/image/upload/v1665582406/Sports/leagues/dhxcczcptgglx3tutkzs.png",
         },
     },
     vietnam: {
@@ -440,6 +447,8 @@ export const list = {
             tournament: "v-league",
             fullName: "V-League",
             id: "626",
+            list: "PLe7emRNTL6bpAaZy0yM5aAEPuVNJLlTPe",
+            logo: "https://res.cloudinary.com/develope-app/image/upload/v1665582406/Sports/leagues/ecacrarco2tibl49hsfw.png",
         },
     },
     // canonical
@@ -557,6 +566,7 @@ export const list = {
             channelId: "UC4LvrpNXujjbGOS4RDvr41g",
             listLength: 10,
             image: "https://res.cloudinary.com/develope-app/image/upload/v1663731614/Sports/uefa-champions-league-204671998_ojqwo1.jpg",
+            logo: "https://res.cloudinary.com/develope-app/image/upload/v1665582406/Sports/leagues/rut11y9eowpkl942ianm.png",
         },
     },
     c2: {
@@ -643,6 +653,7 @@ export const list = {
             channelId: "UC4LvrpNXujjbGOS4RDvr41g",
             listLength: 10,
             image: "https://res.cloudinary.com/develope-app/image/upload/v1663678228/Sports/uel2021_sp_hero_landscape_0_hrj7vj.jpg",
+            logo: "https://res.cloudinary.com/develope-app/image/upload/v1665582406/Sports/leagues/rs7s57quokebwhospgdx.png",
         },
     },
 };

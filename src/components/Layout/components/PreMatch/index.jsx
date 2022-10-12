@@ -1,14 +1,12 @@
 import React, { useCallback, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getRound } from "~/redux/actions";
 import styles from "../Match/Match.module.scss";
 import classNames from "classnames/bind";
 import YouTubeMatch from "../YouTubeMatch";
 import VideoPlay from "../VideoPlay";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { checkTimeMatch } from "../Utils";
+import { checkTimeMatch, handleErrorImage } from "../Utils";
 import { useDispatchCustom } from "../../../Hooks";
 import { getVideo } from "../../../../redux/actions/index";
 import axios from "axios";
@@ -264,10 +262,24 @@ const PreMatch = ({ data, round, lRound, color }) => {
                                                             <div>
                                                                 <img
                                                                     src={`https://api.sofascore.app/api/v1/team/${item[0].homeTeam.id}/image`}
+                                                                    onError={(
+                                                                        e
+                                                                    ) =>
+                                                                        handleErrorImage(
+                                                                            e,
+                                                                            item[0]
+                                                                                .homeTeam
+                                                                                .id
+                                                                        )
+                                                                    }
                                                                     className={cx(
                                                                         "table-match-img-logo"
                                                                     )}
-                                                                    alt="logoOfTeam"
+                                                                    alt={
+                                                                        item[0]
+                                                                            .homeTeam
+                                                                            .shortName
+                                                                    }
                                                                 />
                                                             </div>
                                                         </td>
@@ -339,10 +351,22 @@ const PreMatch = ({ data, round, lRound, color }) => {
                                                         >
                                                             <img
                                                                 src={`https://api.sofascore.app/api/v1/team/${item[0].awayTeam.id}/image`}
+                                                                onError={(e) =>
+                                                                    handleErrorImage(
+                                                                        e,
+                                                                        item[0]
+                                                                            .awayTeam
+                                                                            .id
+                                                                    )
+                                                                }
                                                                 className={cx(
                                                                     "table-match-img-logo"
                                                                 )}
-                                                                alt="logoOfTeam"
+                                                                alt={
+                                                                    item[0]
+                                                                        .awayTeam
+                                                                        .shortName
+                                                                }
                                                             />
                                                         </td>
                                                         <td
@@ -601,10 +625,24 @@ const PreMatch = ({ data, round, lRound, color }) => {
                                                                 <div>
                                                                     <img
                                                                         src={`https://api.sofascore.app/api/v1/team/${item[1].homeTeam.id}/image`}
+                                                                        onError={(
+                                                                            e
+                                                                        ) =>
+                                                                            handleErrorImage(
+                                                                                e,
+                                                                                item[1]
+                                                                                    .homeTeam
+                                                                                    .id
+                                                                            )
+                                                                        }
                                                                         className={cx(
                                                                             "table-match-img-logo"
                                                                         )}
-                                                                        alt="logoOfTeam"
+                                                                        alt={
+                                                                            item[1]
+                                                                                .homeTeam
+                                                                                .shortName
+                                                                        }
                                                                     />
                                                                 </div>
                                                             </td>
@@ -678,10 +716,24 @@ const PreMatch = ({ data, round, lRound, color }) => {
                                                             >
                                                                 <img
                                                                     src={`https://api.sofascore.app/api/v1/team/${item[1].awayTeam.id}/image`}
+                                                                    onError={(
+                                                                        e
+                                                                    ) =>
+                                                                        handleErrorImage(
+                                                                            e,
+                                                                            item[1]
+                                                                                .awayTeam
+                                                                                .id
+                                                                        )
+                                                                    }
                                                                     className={cx(
                                                                         "table-match-img-logo"
                                                                     )}
-                                                                    alt="logoOfTeam"
+                                                                    alt={
+                                                                        item[1]
+                                                                            .awayTeam
+                                                                            .shortName
+                                                                    }
                                                                 />
                                                             </td>
                                                             <td

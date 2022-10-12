@@ -20,8 +20,8 @@ import {
 } from "../containts";
 
 import axios from "axios";
-const server = "https://serversport98.herokuapp.com";
-// const server = "http://localhost:7500";
+//const server = "https://serversport98.herokuapp.com";
+const server = "http://localhost:7500";
 
 export const getVideo =
     (nation, ...arr) =>
@@ -136,4 +136,12 @@ export const changeNation = (nation) => async (dispatch) => {
 export const clearError = () => async (dispatch) => {
     // console.log("clear");
     dispatch({ type: CLEAR_ERROR });
+};
+export const getImageLink = async (id) => {
+    const { data } = await axios.get(`${server}/images/club/${id}`);
+    return data.url;
+};
+export const getLeageLink = async (id) => {
+    const { data } = await axios.get(`${server}/images/league/${id}`);
+    return data.url;
 };

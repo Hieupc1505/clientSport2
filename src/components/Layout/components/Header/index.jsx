@@ -66,9 +66,7 @@ const Header = () => {
     };
     useLayoutEffect(() => {
         document.title = list[nation].params.fullName;
-        document.head.querySelector(
-            "link"
-        ).href = `https://api.sofascore.app/api/v1/unique-tournament/${list[nation].params.id}/image`;
+        document.head.querySelector("link").href = list[nation].params.logo;
     }, [nation]);
 
     const handleClickDoc = (e) => {
@@ -86,8 +84,8 @@ const Header = () => {
             <div className={cx("header-logo")}>
                 <div className={cx("header-text-wrap")}>
                     <img
-                        src={`https://api.sofascore.app/api/v1/unique-tournament/${list[nation].params.id}/image`}
-                        alt="Premier League"
+                        src={list[nation].params.logo}
+                        alt={list[nation].params.fullName}
                         className={cx("header-logo-img")}
                     />
                     <span className={cx("header-logo-text")}>
@@ -110,8 +108,10 @@ const Header = () => {
                                             className={cx("league-item")}
                                         >
                                             <img
-                                                src={`https://api.sofascore.app/api/v1/unique-tournament/${list[item].params.id}/image`}
-                                                alt="Premier League"
+                                                src={list[item].params.logo}
+                                                alt={
+                                                    list[nation].params.fullName
+                                                }
                                                 className={cx(
                                                     "header-logo-img"
                                                 )}
